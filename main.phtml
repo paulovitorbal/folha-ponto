@@ -1,0 +1,339 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="css/bulma.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/font-awesome.min.css">
+        <script src="javascript/jquery.js"></script>
+        <script src="javascript/jquery.mask.min.js"></script>
+        <script src="javascript/moment.js"></script>
+        <script src="javascript/config.js"></script>
+        
+    </head>
+    <body>
+        <section class="hero is-primary header">
+          <div class="hero-body">
+            <div class="container">
+              <h1 class="title">
+                Folha de ponto
+              </h1>
+              <h2 class="subtitle">
+                Maio de 2017
+              </h2>
+            </div>
+          </div>
+        </section>
+        <section class="section  	is-fullwidth">
+            <div class="">
+              <div class="columns">
+                  <div class="column">
+                  	<div class="columns">
+	                  	<div class="column" id='menuSuperior'>
+		                  	<article class="tile notification is-info">
+					          <div class="field is-grouped">
+					          <p class="control">
+						          <a class="button" onclick="limpar();">Limpar</a>
+						       </p>
+						       <p class="control">
+						          <a class="button" id='printButton'>Imprimir</a>
+						       </p>
+					          </div>
+					          
+					        </article>
+					    </div>
+					</div>
+                  	<div class="columns ">
+                  		<div class="column is-info">
+							<div class="field">
+								<div class="field-label is-small">
+									<label for="mesAno" class="label">Mês/Ano</label>
+								</div>
+								<div class="field-body">
+									<div class="field is-small">
+										<p class="control ">
+						          			<input type="text" id='mesAno' class='input is-small noprint' value="Maio de 2017" disabled/>
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					    <div class="column is-info">
+							<div class="field">
+								<div class="field-label is-small">
+									<label for="funcionario" class="label">Funcionário</label>
+								</div>
+								<div class="field-body">
+									<div class="field is-small">
+										<p class="control ">
+						          			<input type="text" id='funcionario' class='input is-small noprint'/>
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					    
+							<div class="column is-info">
+								
+							<div class="field ">
+								<div class="field-label is-small">
+									<label for="empregador" class="label">Empregador</label>
+								</div>
+									<div class="field-body">
+										<div class="field is-small">
+											<p class="control ">
+							          			<input type="text" id='empregador' class='input is-small noprint'/>
+											</p>
+										</div>
+									</div>
+								</div>
+								
+							</div>
+							<div class="column is-info">
+							<div class="field ">
+								<div class="field-label is-small">
+									<label for="saldoAnterior" class="label">Saldo Anterior</label>
+								</div>
+									<div class="field-body">
+										<div class="field ">
+											<p class="control ">
+							          			<input type="text" id='saldoAnterior' class='input is-small noprint'/>
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="column is-info">
+								
+							<div class="field ">
+								<div class="field-label is-small">
+									<label for="saldoAtual" class="label">Saldo Atual</label>
+								</div>
+									<div class="field-body">
+										<div class="field is-small">
+											<p class="control ">
+							          			<input type="text" id='saldoAtual' class='input is-small noprint'/>
+											</p>
+										</div>
+									</div>
+								</div>
+                  		</div>
+                  	</div>
+                    <table id='table' class='table  is-striped'>
+                    	<thead>
+                    		<tr>
+                    			<td class="has-text-centered">Data</td>
+                    			<td colspan=2 class="has-text-centered">Manhã</td>
+                    			<td colspan=2 class="has-text-centered">Tarde</td>
+                    			<td colspan=2 class="has-text-centered">Extra</td>
+                    			<td colspan=4 class="has-text-centered">Totais</td>
+                    		</tr>
+                    		<tr>
+                    			<td class="has-text-centered">Dia</td>
+                    			<td class="has-text-centered">Entrada</td>
+                    			<td class="has-text-centered">Saída</td>
+                    			<td class="has-text-centered">Entrada</td>
+                    			<td class="has-text-centered">Saída</td>
+                    			<td class="has-text-centered">Entrada</td>
+                    			<td class="has-text-centered">Saída</td>
+                    			<td class="has-text-centered">Saldo Diário</td>
+                    			<td class="has-text-centered">Ajuste</td>
+								<td class="has-text-centered">Saldo Acumulado</td>
+                    			<td class="has-text-centered">Comentário</td>
+                    		</tr>
+                    	</thead>
+                    	<tbody>
+                    		<?php foreach ($mes as $key => $value) {
+                    			if ($value->isDiaUtil() === FALSE)
+                    				$class = 'feriado';
+                    			else
+                    				$class ='';
+                    			$input = "<td><input class='noprint input is-small horario' type='text' data-date='%s' data-tipo='%s' data-timestamp='%s' id='%s.%s'/>";
+                    			if ($value->feriado)
+                    				$feriado = ", $value->feriado";
+                    			else
+                    				$feriado = '';
+                    			echo "<tr class='$class dia' data-date='{$value->index}'></td>\n";
+                    			echo "<th>".$value->dia." (". $value->getDiaSemanaAbr() . $feriado . ")</th>\n";
+                    			printf($input, $value->index, 'ME', $value->timestamp, $value->index, 'ME'); //manha entrada
+                    			printf($input, $value->index, 'MS', $value->timestamp, $value->index, 'MS'); //manha saida
+                    			printf($input, $value->index, 'TE', $value->timestamp, $value->index, 'TE'); //tarde entrada
+                    			printf($input, $value->index, 'TS', $value->timestamp, $value->index, 'TS'); //tarde saida
+                    			printf($input, $value->index, 'EE', $value->timestamp, $value->index, 'EE'); //extra entrada
+                    			printf($input, $value->index, 'ES', $value->timestamp, $value->index, 'ES'); //extra saida
+                    			printf($input, $value->index, 'TD', $value->timestamp, $value->index, 'TD'); //total diario
+                    			printf($input, $value->index, 'AJ', $value->timestamp, $value->index, 'AJ'); //total diario
+                    			printf($input, $value->index, 'TA', $value->timestamp, $value->index, 'TA'); //total acumulado
+                    			
+                    			echo "<td><input class='input is-small comentario noprint' type='text' data-date='{$value->index}'/></td>\n"; //comentário
+                    			echo "</tr>\n";
+                    		}
+                    		?>
+                    	</tbody>
+                    </table>
+                  </div>
+              </div>
+        </section>
+    </body>
+    <script>
+    	$( document ).ready(function() {
+	    	$('.horario, #saldoAnterior, #saldoAtual').blur(function(e){
+	    		calcularTudo(e);
+	    	});
+
+	    	$('.horario, #saldoAnterior, #saldoAtual').mask('S00:00', 
+	    		{
+	    			placeholder: "__:__", 
+	    			selectOnFocus: true,
+					translation: {
+						'S':{
+							pattern: /\-/,
+							optional: true
+						}
+					}
+				}
+			);
+
+	    	$('#printButton').click(function(){
+	    		window.print();
+	    	})
+
+			
+			limpar = function(){
+				$('.horario').val('');			
+			}
+			calcularSaldo = function(){
+				$('.dia').each(function(){
+					var data = $(this).data('date');
+				})
+			}
+		    var beforePrint = function() {
+		    	
+		        $('.noprint').each(function(){
+		        	$(this).parent().append('<span class="printable has-text-centered">'+$(this).val()+"</span>");
+		        })
+		    };
+		    var afterPrint = function() {
+		        $('.printable').remove();
+		    };
+
+		    if (window.matchMedia) {
+		        var mediaQueryList = window.matchMedia('print');
+		        mediaQueryList.addListener(function(mql) {
+		            if (mql.matches) {
+		                beforePrint();
+		            } else {
+		                afterPrint();
+		            }
+		        });
+		    }
+
+		    window.onbeforeprint = beforePrint;
+		    window.onafterprint = afterPrint;
+
+		    getData = function(){
+		    	var inputs = new Array();
+		    	$('.horario').each(function(){
+					inputs.push(fillInput($(this)));
+				})
+		    	$('.comentario').each(function(){
+					inputs.push(fillInput($(this)));
+				})
+				return {
+					'funcionario': $('#funcionario').val(),
+					'empregador': $('#empregador').val(),
+					'saldoAtual': $('#saldoAtual').val(),
+					'saldoAnterior': $('#saldoAnterior').val(),
+					'inputs': inputs
+				};
+			}
+			//i for input
+			fillInput = function(i){
+				if ($(i).hasClass('horario')){
+					return {
+						'date': $(i).data('date'),
+						'tipo': $(i).data('tipo'),
+						'timestamp': $(i).data('timestamp'),
+						'valor': $(i).val()
+					};
+				}
+				if ($(i).hasClass('comentario')){
+					return {
+						'date': $(i).data('date'),
+						'valor': $(i).val()
+					}
+				}
+			}
+
+			calcularTudo = function(e){
+				var saldoAnterior = isEmpty($('#saldoAnterior').val());
+				var saldoAtual = isEmpty($('#saldoAtual').val());
+				var totalAcumulado = '';
+
+				$('.dia').each(function(){
+					var index = $(this).data('date');
+					
+					var ME = toS($('#'+index+'\\.ME').val());
+					var MS = toS($('#'+index+'\\.MS').val());
+					var TE = toS($('#'+index+'\\.TE').val());
+					var TS = toS($('#'+index+'\\.TS').val());
+					var EE = toS($('#'+index+'\\.EE').val());
+					var ES = toS($('#'+index+'\\.ES').val());
+					var TD = toS($('#'+index+'\\.TD').val());
+					var TA = toS($('#'+index+'\\.TA').val());
+					var AJ = toS($('#'+index+'\\.AJ').val());
+					var totalDiario = ((MS-ME)+(TS-TE)+(ES-EE));
+					
+					if (totalAcumulado == ''){
+						totalAcumulado = toS($('#saldoAnterior').val());
+					}
+					if (totalDiario == 0 && AJ == 0){
+						totalAcumulado = totalAcumulado;
+						$('#'+index+'\\.TD').val(toHM(totalDiario));
+					}
+					else{
+						if (totalDiario == 0){
+							totalAcumulado = (totalAcumulado + AJ);
+							$('#'+index+'\\.TD').val(toHM(totalDiario));
+						}else{
+							totalAcumulado = (totalAcumulado + AJ) + (totalDiario - config.expediente);
+							$('#'+index+'\\.TD').val(toHM((totalDiario) - config.expediente));
+						}
+					}
+					$('#'+index+'\\.TA').val(toHM(totalAcumulado));
+
+				});
+
+				$('#saldoAtual').val(toHM(totalAcumulado));
+			}
+			toS = function(valor){
+				if (valor == '') return 0;
+
+				var result = valor.split(':');
+				if (result[0] == '-00'){
+					return ((result[0]*60*60)+(result[1]*60)) * -1;
+				}else{
+					return (result[0]*60*60)+(result[1]*60);
+				}
+			}
+			toHM = function(valor){
+				if (!Number.isInteger(valor)) return '';
+				var sinal = '';
+				if (valor < 0) {
+					sinal = '-';
+					valor = valor * -1;
+				}
+
+				var result = '';
+				var q = Math.floor(valor/3600);
+				var r = valor%3600; 
+
+				return sinal + ("00" + q).slice(-2) + ':' + ("00" + Math.floor(r/60)).slice(-2);
+				
+			}
+			isEmpty = function(valor){
+				if (valor == "")
+					return "00:00";
+				return valor;
+			}
+	    });
+    </script>
+</html>

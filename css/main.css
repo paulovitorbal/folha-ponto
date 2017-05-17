@@ -1,0 +1,44 @@
+.feriado{
+	background-color: lightgray !important;
+}
+#table td, #table th{
+	text-align: center !important;
+}
+@media print {
+	.hero, #menuSuperior, .noprint{
+		display:none;
+	}
+	td, th{
+		border: 1px solid black !important;
+		border-collapse: collapse;
+
+	}
+
+
+	input {
+	 color: black !important;
+	 border-width: 0 !important;
+	 border: 1px solid #000 !important;
+	 width: 100% !important;
+	}
+	table {
+	    table-layout: fixed !important;
+	    width: 100% !important;
+	}
+
+	table td {
+	    word-wrap: break-word !important;         /* All browsers since IE 5.5+ */
+	    overflow-wrap: break-word !important;     /* Renamed property in CSS3 draft spec */
+	}
+	td,th{
+		font-size: 0.5REM !important;
+	}
+	.feriado{
+		background-color: lightgray !important;
+	}
+	.is-info{
+		background-color: white !important;
+		color: black !important;
+		border: 1px solid black !important;
+	}
+}
