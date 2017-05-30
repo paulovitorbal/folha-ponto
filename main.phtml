@@ -1,13 +1,13 @@
 <html>
     <head>
     	<meta charset="utf-8" />
-        <link rel="stylesheet" href="css/bulma.css">
-        <link rel="stylesheet" href="css/main.css">
-        <link rel="stylesheet" href="css/font-awesome.min.css">
-        <script src="javascript/jquery.js"></script>
-        <script src="javascript/jquery.mask.min.js"></script>
-        <script src="javascript/moment.js"></script>
-        <script src="javascript/config.js"></script>
+        <link rel="stylesheet" href="/css/bulma.css">
+        <link rel="stylesheet" href="/css/main.css">
+        <link rel="stylesheet" href="/css/font-awesome.min.css">
+        <script src="/javascript/jquery.js"></script>
+        <script src="/javascript/jquery.mask.min.js"></script>
+        <script src="/javascript/moment.js"></script>
+        <script src="/javascript/config.js"></script>
         
     </head>
     <body>
@@ -15,7 +15,7 @@
           <div class="hero-body">
             <div class="container">
               <h1 class="title">
-                Folha de ponto
+                Folha de ponto - <?php echo ucfirst(strftime('%B/%Y', mktime(0,0,0,$mesInformado, 1, $anoInformado)));?>
               </h1>
               <h2 class="subtitle">
                 Preencha os campos, confira os saldos diários e total e imprima.
@@ -37,8 +37,14 @@
 						       <p class="control">
 						          <a class="button" id='printButton'>Imprimir</a>
 						       </p>
+						       
 					          </div>
 					          
+					        </article>
+					        <article class="tile notification is-warning">
+					        	<p>
+						       	Dica: Você pode utilizar parâmetros na URL para indicar o mês e o ano. Ex.: <a href=' <?php echo ($_SERVER['SERVER_PORT']==80?'http://':'https://') . $_SERVER['SERVER_NAME'].'/1/2016';?>'> <?php echo ($_SERVER['SERVER_PORT']==80?'http://':'https://') . $_SERVER['SERVER_NAME'].'/1/2016';?> </a>.
+						       </p>
 					        </article>
 					    </div>
 					</div>
@@ -60,7 +66,7 @@
 					    <div class="column is-info">
 							<div class="field">
 								<div class="field-label is-small">
-									<label for="funcionario" class="label">Funcionário</label>
+									<label for="funcionario" class="label">Empregado</label>
 								</div>
 								<div class="field-body">
 									<div class="field is-small">
