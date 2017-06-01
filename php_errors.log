@@ -740,3 +740,7 @@
 [02-May-2017 15:16:13 America/Sao_Paulo] PHP Fatal error:  Cannot access private property Data::$feriado in C:\projetos\folha_ponto\main.phtml on line 63
 [03-May-2017 12:36:26 America/Sao_Paulo] PHP Fatal error:  Cannot access private property Data::$index in C:\projetos\folha_ponto\main.phtml on line 79
 [03-May-2017 12:38:29 America/Sao_Paulo] PHP Fatal error:  Cannot access private property Data::$index in C:\projetos\folha_ponto\main.phtml on line 79
+[01-Jun-2017 10:31:05 America/Sao_Paulo] PHP Fatal error:  Cannot redeclare Data::getMes() in C:\projetos\folha-ponto\calendario.php on line 61
+[01-Jun-2017 10:31:32 America/Sao_Paulo] PHP Fatal error:  Using $this when not in object context in C:\projetos\folha-ponto\calendario.php on line 41
+[01-Jun-2017 10:31:42 America/Sao_Paulo] PHP Fatal error:  Using $this when not in object context in C:\projetos\folha-ponto\calendario.php on line 41
+[01-Jun-2017 10:31:49 America/Sao_Paulo] PHP Fatal error:  Using $this when not in object context in C:\projetos\folha-ponto\calendario.php on line 41

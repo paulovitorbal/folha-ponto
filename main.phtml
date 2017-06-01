@@ -15,7 +15,7 @@
           <div class="hero-body">
             <div class="container">
               <h1 class="title">
-                Folha de ponto - <?php echo ucfirst(strftime('%B/%Y', mktime(0,0,0,$mesInformado, 1, $anoInformado)));?>
+                Folha de ponto - <?php echo ucfirst(Data::getMesExtenso($mesInformado)."/".$anoInformado);?>
               </h1>
               <h2 class="subtitle">
                 Preencha os campos, confira os saldos diários e total e imprima.

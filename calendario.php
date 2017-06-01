@@ -1,7 +1,6 @@
 <?php
 //http://www.inf.ufrgs.br/~cabral/Pascoa.html
-setlocale(LC_ALL, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
-date_default_timezone_set('America/Sao_Paulo');
+
 
 class Data{
 	public  $feriado = '', $diaUtil = true, $data, $dia, $mes, $diaSemana, $index;
@@ -37,8 +36,11 @@ class Data{
 		else
 			return TRUE;
 	}
-	public function getDiaSemanaAbr(){
-		switch ($this->diaSemana) {
+	public  function getDiaSemanaAbr(){
+		return $this->getDiaSemanaExtenso($this->diaSemana);
+	}
+	public static function getDiaSemanaExtenso($diaSemana){
+		switch ($diaSemana) {
 			case 0:
 				return 'Dom';
 			case 1:
@@ -55,7 +57,34 @@ class Data{
 				return 'Sab';
 			
 		}
-
+	}
+	public static function getMesExtenso($mes){
+		switch ($mes) {
+			case 1:
+				return 'Janeiro';
+			case 2:
+				return 'Fevereiro';
+			case 3:
+				return 'Março';
+			case 4:
+				return 'Abril';
+			case 5:
+				return 'Maio';
+			case 6:
+				return 'Junho';
+			case 7:
+				return 'Julho';
+			case 8:
+				return 'Agosto';
+			case 9:
+				return 'Setembro';
+			case 10:
+				return 'Outubro';
+			case 11:
+				return 'Novembro';
+			case 12:
+				return 'Dezembro';
+		}
 	}
 }
 class Calendario {
