@@ -1,0 +1,258 @@
+<html>
+    <head>
+    	<meta charset="utf-8" />
+        <link rel="stylesheet" href="/css/bulma.css">
+        <link rel="stylesheet" href="/css/main.css">
+        <link rel="stylesheet" href="/css/font-awesome.min.css">
+        <script src="/javascript/jquery.js"></script>
+        <script src="/javascript/jquery.mask.min.js"></script>
+        <script src="/javascript/moment.js"></script>
+        <script src="/javascript/config.js"></script>
+        
+    </head>
+    <body>
+        <section class="hero is-primary header">
+          <div class="hero-body">
+            <div class="container">
+              <h1 class="title">
+                Folha de ponto - <?php echo ucfirst(Data::getMesExtenso($mesInformado)."/".$anoInformado);?>
+              </h1>
+              <h2 class="subtitle">
+                Preencha os campos, confira os saldos diários e total e imprima.
+              </h2>
+            </div>
+          </div>
+        </section>
+        <section class="section  	is-fullwidth">
+            <div class="">
+              <div class="columns">
+                  <div class="column">
+                  	<div class="columns">
+	                  	<div class="column" id='menuSuperior'>
+		                  	<article class="tile notification is-info">
+					          <div class="field is-grouped">
+						       <p class="control">
+						          <a class="button" id='printButton'>Imprimir</a>
+						       </p>
+					          </div>
+					        </article>
+					    </div>
+					</div>
+                  	<div class="columns">
+                  		<div class="column is-info noprint">
+							<div class="field">
+								<div class="field-label is-small">
+									<label for="mesAno" class="label">Mês/Ano</label>
+								</div>
+								<div class="field-body">
+									<div class="field is-small">
+										<p class="control ">
+						          			<input type="text" id='mesAno' class='input is-small noprint' value="Maio de 2017" disabled/>
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+                  		<div class="column is-info noprint">
+							<div class="field">
+								<div class="field-label is-small">
+									<label for="mesAno" class="label">Dias úteis no mês</label>
+								</div>
+								<div class="field-body">
+									<div class="field is-small">
+										<p class="control ">
+						          			<input type="text" id='mesAno' class='input is-small noprint' value="<?php echo $diasUteis?>" disabled/>
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					    <div class="column is-info noprint">
+							<div class="field">
+								<div class="field-label is-small">
+									<label for="funcionario" class="label">Empregado</label>
+								</div>
+								<div class="field-body">
+									<div class="field is-small">
+										<p class="control ">
+						          			<input type="text" id='funcionario' class='input is-small noprint' bind="empregadoText"/>
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					    
+							<div class="column is-info noprint">
+								
+							<div class="field ">
+								<div class="field-label is-small">
+									<label for="empregador" class="label">Empregador</label>
+								</div>
+									<div class="field-body">
+										<div class="field is-small">
+											<p class="control ">
+							          			<input type="text" id='empregador' class='input is-small noprint' bind="empregadorText"/>
+											</p>
+										</div>
+									</div>
+								</div>
+								
+							</div>
+							
+					    <div class="column is-info noprint">
+							<div class="field">
+								<div class="field-label is-small">
+									<label for="data" class="label">Data</label>
+								</div>
+								<div class="field-body">
+									<div class="field is-small">
+										<p class="control ">
+						          			<input type="text" id='data' class='input is-small noprint' bind="dataText"/>
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+							<div class="column is-info noprint">
+								<div class="field ">
+									<div class="field-label is-small">
+										<label for="preco" class="label">Preço da pessagem</label>
+									</div>
+										<div class="field-body">
+											<div class="field is-small">
+												<p class="control ">
+								          			<input type="numeric" id='preco' class='input is-small noprint' bind='preco'/>
+												</p>
+											</div>
+									</div>
+								</div>
+							</div>
+							<div class="column is-info noprint">
+								<div class="field ">
+									<div class="field-label is-small">
+										<label for="passagensPorDia" class="label">Passagens por dia</label>
+									</div>
+										<div class="field-body">
+											<div class="field is-small">
+												<p class="control ">
+								          			<input type="numeric" id='passagensPorDia' class='input is-small noprint'/>
+												</p>
+											</div>
+									</div>
+								</div>
+							</div>
+							
+                  	</div>
+                   	<div class="columns">
+                   		<div class="column">
+                   		<br>
+                   			<div class="box">
+                   				<div class="has-text-centered">
+                   					<h2><strong>Recibo</strong></h2>
+                   				</div>
+								<div class="has-text-centered">
+									<h3><strong><small>Pagamento de vale transporte em espécie</small></strong></h3>
+								</div>
+								<br>
+								<p>
+									<strong>
+										Empregador(a): <span bind='empregadorText'></span>
+									</strong>
+								</p>
+								<p>
+									<strong>
+										Empregad(a): <span bind='empregadoText'></span>
+									</strong>
+								</p>
+								<br>
+								<p>
+									Recebi R$ <strong id="total"></strong> em espécie. Referente à <strong id="totalPassagens"></strong> passagens (valor unitário: R$ <strong bind="preco"></strong>). Referentes ao mês de maio de 2017 pelo que firmo o presente.
+								</p>
+								<br>
+								<p>
+									<p bind='dataText'></p>
+								</p>
+								<br>
+								<br>
+								<div class="painelAssinaturas">
+									<p class="upper-border">Assinatura Empregador(a)</p>
+									<br>
+									<p class="upper-border">Assinatura Empregado(a)</p>
+								</div>
+                   			</div>
+                   		</div>
+                   	</div>
+                  </div>
+              </div>
+        </section>
+    </body>
+    <script>
+    	$( document ).ready(function() {
+    		$('#printButton').click(function(){
+	    		window.print();
+	    	})
+	    	
+		    var beforePrint = function() {
+		    	
+		        $('.noprint').each(function(){
+		        	$(this).parent().append('<span class="printable has-text-centered">'+$(this).val()+"</span>");
+		        })
+		    };
+		    var afterPrint = function() {
+		        $('.printable').remove();
+		    };
+
+		    if (window.matchMedia) {
+		        var mediaQueryList = window.matchMedia('print');
+		        mediaQueryList.addListener(function(mql) {
+		            if (mql.matches) {
+		                beforePrint();
+		            } else {
+		                afterPrint();
+		            }
+		        });
+		    }
+
+		    window.onbeforeprint = beforePrint;
+		    window.onafterprint = afterPrint;
+
+		    $("*[bind]").on('change keyup', function (e) {
+				 var to_bind = $(this).attr('bind');
+				 $("*[bind='"+to_bind+"']").html($(this).val());
+				 $("*[bind='"+to_bind+"']").val($(this).val());
+			});
+			$("div[bind]").bind("DOMSubtreeModified",function(){
+				 var to_bind = $(this).attr('bind');
+				 $("*[bind='"+to_bind+"']").html($(this).html());
+				 $("*[bind='"+to_bind+"']").val($(this).html());
+			});
+			$('#preco, #passagensPorDia').on('change keyup', function(){
+				updateTotais();
+			});
+		    updateTotais = function(){
+		    	var precoUnit = $('#preco').val().replace('\,','\.');
+		    	var passagensPorDia = $('#passagensPorDia').val();
+		    	var diasUteis = <?php echo $diasUteis ?>;
+		    	var totalPassagens = diasUteis * passagensPorDia;
+		    	var total = (totalPassagens * precoUnit);
+		    	total = total.toFixed(2) + '';
+		    	total = total.replace('\.','\,');
+
+		    	$('#totalPassagens').html(totalPassagens);
+		    	$('#total').html(total);
+		    }
+		    $('#preco').mask('0,00', 
+	    		{
+	    			placeholder: "_,__", 
+	    			selectOnFocus: true
+				}
+			);
+		    $('#passagensPorDia').mask('00', 
+	    		{
+	    			placeholder: "__", 
+	    			selectOnFocus: true
+				}
+			);
+	    });
+    </script>
+</html>

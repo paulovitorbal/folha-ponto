@@ -4,7 +4,15 @@
 #table td, #table th{
 	text-align: center !important;
 }
+.upper-border{
+	border-top: 1px solid black;
+	text-align: center;
+	width: 50%;
+}
 @media print {
+	.box{
+		border: 1px solid black;
+	}
 	.hero, #menuSuperior, .noprint{
 		display:none;
 	}
