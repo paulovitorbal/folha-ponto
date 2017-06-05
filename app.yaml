@@ -14,5 +14,7 @@ handlers:
 - url: /fonts
   static_dir: fonts
 # Serve php scripts.
+- url: /vale-transporte
+  script: vale-transporte.php
 - url: /.*
   script: index.php
