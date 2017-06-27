@@ -15,4 +15,4 @@ handlers:
   static_dir: fonts
 # Serve php scripts.
 - url: /.*
-  script: index.php
+  script: router.php
