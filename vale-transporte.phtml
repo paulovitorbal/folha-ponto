@@ -47,7 +47,7 @@
 								<div class="field-body">
 									<div class="field is-small">
 										<p class="control ">
-						          			<input type="text" id='mesAno' class='input is-small noprint' value="Maio de 2017" disabled/>
+						          			<span type="text" id='mesAno' class='input is-small noprint' value="<?php echo ucfirst(Data::getMesExtenso($mesInformado)." de ".$anoInformado);?>" disabled/>
 										</p>
 									</div>
 								</div>
@@ -166,7 +166,7 @@
 								</p>
 								<br>
 								<p>
-									Recebi R$ <strong id="total"></strong> em espécie. Referente à <strong id="totalPassagens"></strong> passagens (valor unitário: R$ <strong bind="preco"></strong>). Referentes ao mês de maio de 2017 pelo que firmo o presente.
+									Recebi R$ <strong id="total"></strong> em espécie. Referente à <strong id="totalPassagens"></strong> passagens (valor unitário: R$ <strong bind="preco"></strong>). Referentes ao mês de <?php echo ucfirst(Data::getMesExtenso($mesInformado)." de ".$anoInformado);?> pelo que firmo o presente.
 								</p>
 								<br>
 								<p>
