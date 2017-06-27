@@ -1,3 +1,6 @@
+<?php
+$dataExtenso = ucfirst(Data::getMesExtenso($mesInformado)." de ".$anoInformado);
+?>
 <html>
     <head>
     	<meta charset="utf-8" />
@@ -47,7 +50,7 @@
 								<div class="field-body">
 									<div class="field is-small">
 										<p class="control ">
-						          			<span type="text" id='mesAno' class='input is-small noprint' value="<?php echo ucfirst(Data::getMesExtenso($mesInformado)." de ".$anoInformado);?>" disabled/>
+						          			<span type="text" id='mesAno' class='input is-small noprint' value="<?php echo $dataExtenso ?>" disabled/>
 										</p>
 									</div>
 								</div>
@@ -166,7 +169,7 @@
 								</p>
 								<br>
 								<p>
-									Recebi R$ <strong id="total"></strong> em espécie. Referente à <strong id="totalPassagens"></strong> passagens (valor unitário: R$ <strong bind="preco"></strong>). Referentes ao mês de <?php echo ucfirst(Data::getMesExtenso($mesInformado)." de ".$anoInformado);?> pelo que firmo o presente.
+									Recebi R$ <strong id="total"></strong> em espécie. Referente à <strong id="totalPassagens"></strong> passagens (valor unitário: R$ <strong bind="preco"></strong>). Referentes ao mês de <?php echo $dataExtenso ?> pelo que firmo o presente.
 								</p>
 								<br>
 								<p>
