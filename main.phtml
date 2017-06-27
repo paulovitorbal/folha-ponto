@@ -15,7 +15,7 @@
           <div class="hero-body">
             <div class="container">
               <h1 class="title">
-                Folha de ponto - <?php echo ucfirst(Data::getMesExtenso($mesInformado)."/".$anoInformado);?>
+                Folha de ponto - <?php echo $mesAnoInformado = ucfirst(Data::getMesExtenso($mesInformado)."/".$anoInformado);?>
               </h1>
               <h2 class="subtitle">
                 Preencha os campos, confira os saldos diários e total e imprima.
@@ -57,7 +57,7 @@
 								<div class="field-body">
 									<div class="field is-small">
 										<p class="control ">
-						          			<input type="text" id='mesAno' class='input is-small noprint' value="Maio de 2017" disabled/>
+						          			<input type="text" name='mesAno' id='mesAno' class='input is-small noprint' value="<?php echo $mesAnoInformado?>" disabled/>
 										</p>
 									</div>
 								</div>
