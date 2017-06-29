@@ -6,11 +6,12 @@ require __DIR__ . '/vendor/autoload.php';
 $router = new \Bramus\Router\Router();
 
 
-$router->match('GET|POST', '/vale-transporte/?.*', function() { 
+$router->match('GET|POST', '/vale-transporte/(\d{0,2})/?(\d{4})?', function($mesInformado, $anoInformado) { 
+
 	require('vale-transporte.php');
 });
 
-$router->match('GET|POST', '/.*', function() { 
+$router->match('GET|POST', '/?(\d{0,2})/?(\d{4})?', function($mesInformado, $anoInformado) { 
 	require('index.php');
 });
 

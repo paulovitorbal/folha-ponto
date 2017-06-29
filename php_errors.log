@@ -744,3 +744,7 @@
 [01-Jun-2017 10:31:32 America/Sao_Paulo] PHP Fatal error:  Using $this when not in object context in C:\projetos\folha-ponto\calendario.php on line 41
 [01-Jun-2017 10:31:42 America/Sao_Paulo] PHP Fatal error:  Using $this when not in object context in C:\projetos\folha-ponto\calendario.php on line 41
 [01-Jun-2017 10:31:49 America/Sao_Paulo] PHP Fatal error:  Using $this when not in object context in C:\projetos\folha-ponto\calendario.php on line 41
+[29-Jun-2017 09:43:58 America/Sao_Paulo] PHP Warning:  easter_date(): This function is only valid for years between 1970 and 2037 inclusive in C:\projetos\folha-ponto\calendario.php on line 153
+[29-Jun-2017 09:43:58 America/Sao_Paulo] PHP Fatal error:  Call to a member function format() on boolean in C:\projetos\folha-ponto\calendario.php on line 15
+[29-Jun-2017 09:46:36 America/Sao_Paulo] PHP Notice:  Undefined variable: mes in C:\projetos\folha-ponto\vale-transporte.php on line 2
+[29-Jun-2017 09:46:36 America/Sao_Paulo] PHP Notice:  Undefined variable: ano in C:\projetos\folha-ponto\vale-transporte.php on line 3
